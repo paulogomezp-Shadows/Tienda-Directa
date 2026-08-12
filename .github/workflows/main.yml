@@ -1,0 +1,38 @@
+name: Construir APK Android
+
+on:
+  workflow_dispatch: # Esto nos creará un botón para ejecutarlo manualmente cuando queramos
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Obtener el código fuente
+        uses: actions/checkout@v4
+
+      - name: 2. Preparar el motor de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 3. Instalar la librería Flet
+        run: pip install flet
+
+      - name: 4. Preparar el motor de Android (Flutter)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: 5. Adaptar el código para móviles
+        # Flet exige que el archivo se llame main.py para Android
+        run: mv app_cliente.py main.py
+
+      - name: 6. Construir la aplicación (El trabajo pesado)
+        run: flet build apk
+
+      - name: 7. Empaquetar y entregar el APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: App-Tienda-Directa
+          path: build/apk/**/*.apk
