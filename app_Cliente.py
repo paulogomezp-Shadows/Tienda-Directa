@@ -17,8 +17,8 @@ def main(page: ft.Page):
     )
 
     # 2. Textos de Bienvenida
-    titulo = ft.Text("Aceite de Oliva Premium", size=24, weight=ft.FontWeight.BOLD, color=ft.colors.BLUE_900)
-    subtitulo = ft.Text("¡Bienvenido a la Tienda!", size=18, color=ft.colors.BLUE_GREY_700)
+    titulo = ft.Text("Aceite de Oliva Premium", size=24, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_900)
+    subtitulo = ft.Text("¡Bienvenido a la Tienda!", size=18, color=ft.Colors.BLUE_GREY_700)
 
     # 3. Campos de Entrada (ahora con iconos)
     txt_nombre = ft.TextField(label="Tu Nombre", prefix_icon=ft.icons.PERSON_OUTLINE, border_radius=10)
@@ -27,8 +27,8 @@ def main(page: ft.Page):
 
     # 4. Controles de cantidad (Botones circulares)
     lbl_cantidad = ft.Text("1", size=20, weight=ft.FontWeight.BOLD)
-    btn_menos = ft.IconButton(icon=ft.icons.REMOVE, bgcolor=ft.colors.RED_400, icon_color=ft.colors.WHITE)
-    btn_mas = ft.IconButton(icon=ft.icons.ADD, bgcolor=ft.colors.GREEN_600, icon_color=ft.colors.WHITE)
+    btn_menos = ft.IconButton(icon=ft.icons.REMOVE, bgcolor=ft.Colors.RED_400, icon_color=ft.Colors.WHITE)
+    btn_mas = ft.IconButton(icon=ft.icons.ADD, bgcolor=ft.Colors.GREEN_600, icon_color=ft.Colors.WHITE)
     
     fila_cantidad = ft.Row(
         controls=[ft.Text("Cantidad:", size=16), btn_menos, lbl_cantidad, btn_mas],
@@ -46,8 +46,8 @@ def main(page: ft.Page):
     btn_confirmar = ft.ElevatedButton(
         text="Confirmar Compra",
         icon=ft.icons.SHOPPING_CART_CHECKOUT,
-        bgcolor=ft.colors.BLUE_900,
-        color=ft.colors.WHITE,
+        bgcolor=ft.Colors.BLUE_900,
+        color=ft.Colors.WHITE,
         width=300,
         height=50
     )
@@ -64,10 +64,10 @@ def main(page: ft.Page):
             dropdown_pago,
             btn_confirmar
         ], spacing=15, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-        bgcolor=ft.colors.WHITE,
+        bgcolor=ft.Colors.WHITE,
         padding=20,
         border_radius=15,
-        shadow=ft.BoxShadow(blur_radius=15, color=ft.colors.BLACK12)
+        shadow=ft.BoxShadow(blur_radius=15, color=ft.Colors.BLACK12)
     )
 
     # Agregar todo a la pantalla
