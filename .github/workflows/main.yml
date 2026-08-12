@@ -26,7 +26,7 @@ jobs:
 
       - name: 5. Adaptar el código para móviles
         # Flet exige que el archivo se llame main.py para Android
-        run: mv app_cliente.py main.py
+        run: mv app_Cliente.py main.py
 
       - name: 6. Construir la aplicación (El trabajo pesado)
         run: flet build apk
