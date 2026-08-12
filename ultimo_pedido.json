@@ -1,0 +1,10 @@
+{
+    "cliente": "Paulo Silva",
+    "direccion": "Juan Retamal 735",
+    "pedido": {
+        "producto": "Producto Estrella",
+        "cantidad": 8,
+        "envio_gratis": true
+    },
+    "total_pagado": 200000
+}

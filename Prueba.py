@@ -1,0 +1,1 @@
+print("¡Hola, mundo! Mi aventura en la IA comienza.")

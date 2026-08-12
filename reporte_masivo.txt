@@ -1,0 +1,23 @@
+--- REPORTE MASIVO DE VENTAS ---
+
+Venta de 1 unidades:
+Subtotal: $25000 | Envío: $4500 | Total a cobrar: $29500
+----------------------------------------
+Venta de 5 unidades:
+Subtotal: $125000 | Envío: $0 | Total a cobrar: $125000
+----------------------------------------
+Venta de 3 unidades:
+Subtotal: $75000 | Envío: $4500 | Total a cobrar: $79500
+----------------------------------------
+Venta de 10 unidades:
+Subtotal: $250000 | Envío: $0 | Total a cobrar: $250000
+----------------------------------------
+Venta de 2 unidades:
+Subtotal: $50000 | Envío: $4500 | Total a cobrar: $54500
+----------------------------------------
+Venta de 8 unidades:
+Subtotal: $200000 | Envío: $0 | Total a cobrar: $200000
+----------------------------------------
+Venta de 4 unidades:
+Subtotal: $100000 | Envío: $4500 | Total a cobrar: $104500
+----------------------------------------
