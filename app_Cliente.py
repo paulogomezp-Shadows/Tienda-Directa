@@ -13,7 +13,7 @@ def main(page: ft.Page):
         src="https://picsum.photos/400/400", # Reemplaza con el link a la foto real de tu producto
         width=300,
         height=300,
-        fit=ft.ImageFit.CONTAIN,
+        fit="contain",
     )
 
     # 2. Textos de Bienvenida
