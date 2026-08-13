@@ -38,7 +38,7 @@ def main(page: ft.Page):
     # 5. Método de pago y Botón principal
     dropdown_pago = ft.Dropdown(
         label="Método de Pago",
-        prefix_icon="credit_card",
+        icon="credit_card",
         options=[ft.dropdown.Option("Tarjeta de Crédito"), ft.dropdown.Option("Transferencia")],
         border_radius=10
     )
