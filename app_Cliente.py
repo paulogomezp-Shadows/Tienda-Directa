@@ -35,7 +35,7 @@ def main(page: ft.Page):
         alignment=ft.MainAxisAlignment.CENTER
     )
 
-    # 5. Método de pago y Botón principal
+  # 5. Método de pago y Botón principal
     dropdown_pago = ft.Dropdown(
         label="Método de Pago",
         options=[ft.dropdown.Option("Tarjeta de Crédito"), ft.dropdown.Option("Transferencia")],
@@ -43,10 +43,12 @@ def main(page: ft.Page):
     )
     
     btn_confirmar = ft.ElevatedButton(
-        text="Confirmar Compra",
+        "Confirmar Compra",  # <--- El texto va directamente como primer elemento, sin 'text='
         icon="shopping_cart_checkout",
-        bgcolor=ft.Colors.BLUE_900,
-        color=ft.Colors.WHITE,
+        style=ft.ButtonStyle(
+            color=ft.Colors.WHITE,
+            bgcolor=ft.Colors.BLUE_900,
+        ),
         width=300,
         height=50
     )
