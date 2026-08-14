@@ -10,7 +10,7 @@ def main(page: ft.Page):
 
     # 1. La imagen del producto (Vitrina)
     imagen_producto = ft.Image(
-        src="https://picsum.photos/400/400", # Reemplaza con el link a la foto real de tu producto
+        src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=400&auto=format&fit=crop", 
         width=300,
         height=300,
         fit="contain",
@@ -25,10 +25,10 @@ def main(page: ft.Page):
     txt_direccion = ft.TextField(label="Dirección de Envío", prefix_icon="location_on_outlined", border_radius=10)
     txt_cupon = ft.TextField(label="Cupón de Descuento", prefix_icon="local_offer_outlined", border_radius=10)
 
-    # 4. Controles de cantidad (Botones circulares con iconos en texto)
+    # 4. Controles de cantidad (Botones circulares con la librería ft.Icons)
     lbl_cantidad = ft.Text("1", size=20, weight=ft.FontWeight.BOLD)
-    btn_menos = ft.IconButton(icon="remove", bgcolor=ft.Colors.RED_400, icon_color=ft.Colors.WHITE)
-    btn_mas = ft.IconButton(icon="add", bgcolor=ft.Colors.GREEN_600, icon_color=ft.Colors.WHITE)
+    btn_menos = ft.IconButton(icon=ft.Icons.REMOVE, bgcolor=ft.Colors.RED_400, icon_color=ft.Colors.WHITE)
+    btn_mas = ft.IconButton(icon=ft.Icons.ADD, bgcolor=ft.Colors.GREEN_600, icon_color=ft.Colors.WHITE)
     
     fila_cantidad = ft.Row(
         controls=[ft.Text("Cantidad:", size=16), btn_menos, lbl_cantidad, btn_mas],
