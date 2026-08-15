@@ -35,7 +35,7 @@ jobs:
         run: yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
 
       - name: 6. Construir la aplicación (El trabajo pesado)
-        run: yes | flet build apk
+        run: flet build apk
 
       - name: 7. Empaquetar y entregar el APK
         uses: actions/upload-artifact@v4
