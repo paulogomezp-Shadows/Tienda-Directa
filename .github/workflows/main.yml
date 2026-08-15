@@ -24,10 +24,6 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: 5. Adaptar el código para móviles
-        # Flet exige que el archivo se llame main.py para Android
-        run: mv app_Cliente.py main.py
-
       - name: Instalar dependencias de Linux (Requisito de Flutter)
         run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev mesa-utils
 
