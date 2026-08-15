@@ -77,6 +77,8 @@ def main(page: ft.Page):
 
     # --- 4. CONEXIÓN A LA CAJA REGISTRADORA ---
     def procesar_compra(e):
+        nonlocal cantidad_actual # <--- ¡EL SALVAVIDAS MOVIDO AL PRINCIPIO!
+        
         btn_confirmar.disabled = True
         btn_confirmar.text = "Procesando..."
         lbl_resultado.value = ""
@@ -101,7 +103,8 @@ def main(page: ft.Page):
                 txt_nombre.value = ""
                 txt_direccion.value = ""
                 txt_cupon.value = ""
-                nonlocal cantidad_actual
+                
+                # Reiniciamos la memoria sin romper Python
                 cantidad_actual = 1
                 lbl_cantidad.value = "1"
                 calcular_totales()
