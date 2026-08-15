@@ -28,8 +28,11 @@ jobs:
         # Flet exige que el archivo se llame main.py para Android
         run: mv app_Cliente.py main.py
 
+      - name: Aceptar licencias de Android SDK
+        run: yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
+
       - name: 6. Construir la aplicación (El trabajo pesado)
-        run: yes|flet build apk
+        run: yes | flet build apk
 
       - name: 7. Empaquetar y entregar el APK
         uses: actions/upload-artifact@v4
