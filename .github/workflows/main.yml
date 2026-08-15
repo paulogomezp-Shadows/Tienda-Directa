@@ -34,11 +34,8 @@ jobs:
       - name: Aceptar licencias de Android SDK
         run: yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
 
-      - name: 5.5. Preparar motor interno de Flet (El Explorador)
-        run: echo "y" | flet build apk || true
-
       - name: 6. Construir la aplicación (El trabajo pesado)
-        run: export PATH="/home/runner/flutter/3.44.8/bin:$PATH" && flet build apk
+        run: export PATH="/home/runner/flutter/3.44.8/bin:$PATH" && echo "y" | flet build apk
 
       - name: 7. Empaquetar y entregar el APK
         uses: actions/upload-artifact@v4
