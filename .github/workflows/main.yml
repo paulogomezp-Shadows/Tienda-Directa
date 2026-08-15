@@ -34,7 +34,7 @@ jobs:
         run: |
           export PATH="/home/runner/flutter/3.44.8/bin:$PATH"
           echo "y" | flet build apk || true
-          flet build apk
+          flet build apk --verbose
 
       - name: 7. Empaquetar y entregar el APK
         uses: actions/upload-artifact@v4
