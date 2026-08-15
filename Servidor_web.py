@@ -5,6 +5,41 @@ import csv
 
 app = Flask(__name__)
 
+# --- ⚙️ TU PANEL DE CONTROL (Modifica esto sin tocar la app) ---
+PRECIO_UNITARIO = 25000
+COSTO_ENVIO_BASE = 5000
+CANTIDAD_ENVIO_GRATIS = 5
+CUPON_ACTIVO = "vip2006"
+DESCUENTO_CUPON = 0.10 # 10%
+# --------------------------------------------------------------
+
+# --- 🧠 NUEVA RUTA: EL CEREBRO DE CÁLCULO ---
+@app.route('/api/calcular_totales', methods=['POST'])
+def calcular_totales():
+    # 1. Recibir los datos que manda la aplicación
+    datos_cliente = request.get_json()
+    cantidad = datos_cliente.get('cantidad', 1)
+    cupon = datos_cliente.get('cupon', '').strip().lower()
+
+    # 2. Hacer las matemáticas
+    subtotal = cantidad * PRECIO_UNITARIO
+    envio = 0 if cantidad >= CANTIDAD_ENVIO_GRATIS else COSTO_ENVIO_BASE
+    
+    descuento = 0
+    if cupon == CUPON_ACTIVO:
+        descuento = int(subtotal * DESCUENTO_CUPON)
+
+    total_final = subtotal + envio - descuento
+
+    # 3. Devolver los resultados a la aplicación
+    return jsonify({
+        "subtotal": subtotal,
+        "envio": envio,
+        "descuento": descuento,
+        "total_final": total_final
+    })
+# --------------------------------------------
+
 @app.route('/estado', methods=['GET'])
 def verificar_conexion():
     return jsonify({"estado": "En línea", "mensaje": "Servidor central operativo."})
@@ -22,7 +57,8 @@ def procesar_venta():
         cantidad = int(datos_app["pedido"]["cantidad"]) 
         cupon = datos_app.get("cupon", "") 
         
-        total = Funciones.calcular_total_pagar(cantidad, 25000, cupon)
+        # Conectado a la variable global PRECIO_UNITARIO
+        total = Funciones.calcular_total_pagar(cantidad, PRECIO_UNITARIO, cupon)
         folio = random.randint(10000, 99999)
         
         with open("nomina_despachos.csv", "a", encoding="utf-8") as bd:
@@ -61,7 +97,6 @@ def auditoria_remota():
 
     # 2. Si la llave es correcta, el código continúa normalmente hacia la bóveda
     total_unidades = 0
-    precio_producto = 25000
     
     try:
         with open("nomina_despachos.csv", "r", encoding="utf-8") as archivo:
@@ -74,7 +109,8 @@ def auditoria_remota():
                 cantidad_comprada = int(fila[-1])
                 total_unidades += cantidad_comprada
                 
-        ingresos_totales = total_unidades * precio_producto
+        # Conectado a la variable global PRECIO_UNITARIO
+        ingresos_totales = total_unidades * PRECIO_UNITARIO
         
         reporte = {
             "estado": "OK",
