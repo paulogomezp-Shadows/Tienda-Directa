@@ -12,7 +12,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 try:
-    credenciales = Credentials.from_service_account_file("credenciales.json", scopes=SCOPES)
+    credenciales = Credentials.from_service_account_file("/home/PgomezP/mysite/credenciales.json", scopes=SCOPES)
     cliente_gspread = gspread.authorize(credenciales)
     hoja_bd = cliente_gspread.open("Pedidos_Aceite_Premium").sheet1
 except Exception as e:
