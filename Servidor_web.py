@@ -2,6 +2,22 @@ from flask import Flask, jsonify, request
 import random
 import Funciones
 import csv
+import gspread
+from google.oauth2.service_account import Credentials
+from datetime import datetime # <-- NUEVO 1: Herramienta para guardar la fecha y hora de la compra
+
+# --- CONFIGURACIÓN DE LA BASE DE DATOS GOOGLE SHEETS ---
+SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+try:
+    credenciales = Credentials.from_service_account_file("credenciales.json", scopes=SCOPES)
+    cliente_gspread = gspread.authorize(credenciales)
+    hoja_bd = cliente_gspread.open("Pedidos_Aceite_Premium").sheet1
+except Exception as e:
+    print(f"Error al conectar con Google Sheets: {e}")
+    hoja_bd = None
 
 app = Flask(__name__)
 
@@ -61,8 +77,22 @@ def procesar_venta():
         total = Funciones.calcular_total_pagar(cantidad, PRECIO_UNITARIO, cupon)
         folio = random.randint(10000, 99999)
         
+        # RESPALDO LOCAL EN CSV
         with open("nomina_despachos.csv", "a", encoding="utf-8") as bd:
             bd.write(f'{folio},{cliente},"{direccion}",{cantidad}\n')
+            
+        # --- NUEVO 2: ESCRITURA EN LA NUBE (GOOGLE SHEETS) ---
+        if hoja_bd:
+            try:
+                # Calculamos la fecha en este instante
+                fecha_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                # Escribimos los datos respetando el orden de tus columnas (A hasta G)
+                hoja_bd.append_row([
+                    folio, fecha_str, cliente, direccion, cantidad, cupon, total
+                ])
+            except Exception as e:
+                print(f"Error interno al guardar en Google Sheets: {e}")
+        # -----------------------------------------------------
             
         respuesta = {
             "exito": True,

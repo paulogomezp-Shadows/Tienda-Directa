@@ -10,7 +10,7 @@ def calcular_costo_envio(cantidad):
 # Le ponemos ="" para que, si el cliente no tiene cupón, el sistema no colapse.
 def calcular_total_pagar(cantidad, precio_unitario, cupon=""):
     envio = calcular_costo_envio(cantidad)
-    subtotal = cantidad * precio_unitario
+    subtotal = int(cantidad) * precio_unitario
     descuento = 0
     
     # Lógica del código de descuento
